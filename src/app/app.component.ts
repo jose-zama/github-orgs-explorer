@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {  Router } from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
-  title = 'homework';
+  title = 'Hola!';
+
+  constructor(
+    private router: Router,
+  ) {}
+
+  listRepositories(org:string){
+    this.router.navigate(['/orgs',org]);
+  }
 }
