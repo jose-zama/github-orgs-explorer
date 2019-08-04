@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { ReposContainerComponent } from './repos-container.component';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {ReposContainerComponent} from './repos-container.component';
+import {RouterTestingModule} from '@angular/router/testing';
 
 describe('ReposContainerComponent', () => {
   let component: ReposContainerComponent;
@@ -8,9 +8,12 @@ describe('ReposContainerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ReposContainerComponent ]
+      imports: [
+        RouterTestingModule,
+      ],
+      declarations: [ReposContainerComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
