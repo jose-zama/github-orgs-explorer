@@ -10,7 +10,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
   MatFormFieldModule,
   MatInputModule,
-  MatButtonModule
+  MatButtonModule, MatListModule, MatCardModule, MatDividerModule, MatIconModule, MatBadgeModule
 } from '@angular/material';
 
 import {ReposContainerComponent} from './repos-container/repos-container.component';
@@ -29,7 +29,12 @@ import {GithubService} from "./services/github.service";
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatListModule,
+    MatCardModule,
+    MatDividerModule,
+    MatIconModule,
+    MatBadgeModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [

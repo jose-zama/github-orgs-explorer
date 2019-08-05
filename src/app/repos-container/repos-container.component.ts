@@ -20,8 +20,9 @@ export class ReposContainerComponent implements OnInit {
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.organisation.name = params.get('org');
 
-      this.gitService.getRepositories(this.organisation.name).subscribe(res => {
-        this.organisation.repos = res;
+      this.gitService.getRepositories(this.organisation.name).subscribe(repos => {
+        repos.sort((a,b)=>a.stargazers_count<b.stargazers_count);
+        this.organisation.repos = repos;
       });
     });
   }

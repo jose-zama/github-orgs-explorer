@@ -85,6 +85,7 @@ describe('ReposContainerComponent', () => {
     expect(gitServiceSpy.getRepositories).toHaveBeenCalledWith('something');
   });
 
-  //TODO: test exceptions
+  //TODO: test exceptions like
+  //not existing organization
 
 });

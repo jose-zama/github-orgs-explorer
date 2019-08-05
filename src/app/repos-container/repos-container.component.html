@@ -1,7 +1,15 @@
-<p>
-  Name: {{organisation.name}}
-</p>
-
-<h3 *ngFor="let repo of organisation.repos">
-{{repo.name}}
-</h3>
+<mat-card class="homework-repo" *ngFor="let repo of organisation.repos">
+  <mat-card-title>
+    {{repo.name}}
+    <mat-icon matBadge="{{repo.stargazers_count}}">star</mat-icon>
+    <span class="cdk-visually-hidden">
+      Stars
+    </span>
+  </mat-card-title>
+  <mat-card-subtitle>
+    {{repo.language}}
+  </mat-card-subtitle>
+  <mat-card-content>
+    <p>{{repo.description}}</p>
+  </mat-card-content>
+</mat-card>
