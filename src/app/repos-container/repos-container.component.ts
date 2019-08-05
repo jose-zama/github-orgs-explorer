@@ -11,6 +11,8 @@ import {Organisation} from "./Organisation";
 export class ReposContainerComponent implements OnInit {
 
   organisation: Organisation = new Organisation();
+  repositories;
+  languages;
 
   constructor(private route: ActivatedRoute,
               private gitService: GitService,) {
@@ -19,12 +21,25 @@ export class ReposContainerComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.organisation.name = params.get('org');
+      this.languages = new Set();
 
       this.gitService.getRepositories(this.organisation.name).subscribe(repos => {
-        repos.sort((a,b)=>a.stargazers_count<b.stargazers_count);
-        this.organisation.repos = repos;
+        this.organisation.repos = this.repositories = repos;
+
+        this.repositories.sort((a, b) => a.stargazers_count < b.stargazers_count);
+        this.repositories
+          .map((repo) => repo.language)
+          .filter((language) => language !== null)
+          .forEach((language) => this.languages.add(language));
       });
     });
+  }
+
+  filterByLanguage(language: string) {
+    if (language === 'all')
+      this.repositories = this.organisation.repos;
+    else
+      this.repositories = this.organisation.repos.filter((repo) => repo.language === language);
   }
 
 }

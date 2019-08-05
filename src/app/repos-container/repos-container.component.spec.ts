@@ -4,7 +4,7 @@ import {ActivatedRoute} from '@angular/router';
 import {GitService} from "../services/git.service";
 import {of} from "rxjs";
 import {ActivatedRouteStub} from "../../testing/ActivatedRouteStub";
-import {MatIconModule, MatBadgeModule, MatCardModule} from "@angular/material";
+import {MatIconModule, MatBadgeModule, MatCardModule, MatButtonToggleModule} from "@angular/material";
 
 describe('ReposContainerComponent', () => {
 
@@ -28,7 +28,8 @@ describe('ReposContainerComponent', () => {
       imports: [
         MatIconModule,
         MatBadgeModule,
-        MatCardModule
+        MatCardModule,
+        MatButtonToggleModule
       ],
       providers: [
         {provide: GitService, useValue: gitServiceSpy},
