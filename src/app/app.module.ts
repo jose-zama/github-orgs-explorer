@@ -1,6 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http';
-import {NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import {NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA} from '@angular/core';
 
 
 import {AppRoutingModule} from './app-routing.module';
@@ -36,7 +36,7 @@ import {GithubService} from "./services/github.service";
     MatIconModule,
     MatBadgeModule
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
   providers: [
     {provide: GitService, useClass: GithubService}
   ],

@@ -1,9 +1,10 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {ReposContainerComponent} from './repos-container.component';
-import {ActivatedRoute, ParamMap} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import {GitService} from "../services/git.service";
 import {of} from "rxjs";
 import {ActivatedRouteStub} from "../../testing/ActivatedRouteStub";
+import {MatIconModule, MatBadgeModule, MatCardModule} from "@angular/material";
 
 describe('ReposContainerComponent', () => {
 
@@ -24,14 +25,18 @@ describe('ReposContainerComponent', () => {
     });
 
     TestBed.configureTestingModule({
-      // imports: [RouterTestingModule],
+      imports: [
+        MatIconModule,
+        MatBadgeModule,
+        MatCardModule
+      ],
       providers: [
         {provide: GitService, useValue: gitServiceSpy},
         {provide: ActivatedRoute, useValue: activatedRouteStub}
       ],
       declarations: [ReposContainerComponent]
-    });
-    // .compileComponents();
+    })
+     .compileComponents();
   }));
 
   beforeEach(() => {
