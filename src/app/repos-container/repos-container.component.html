@@ -1,3 +1,7 @@
 <p>
-  Name: {{organisation}}
+  Name: {{organisation.name}}
 </p>
+
+<h3 *ngFor="let repo of organisation.repos">
+{{repo.name}}
+</h3>

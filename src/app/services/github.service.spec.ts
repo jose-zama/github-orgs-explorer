@@ -34,10 +34,10 @@ describe('GithubService', () => {
     it('should return 1 repository', () => {
       //setup
       const organisationName = "my-organisation";
-      let expectedRepository = {
+      let expectedRepository = [{
         id: 111111,
         name: 'some_repo_name'
-      };
+      }];
 
       //run
       let result = service.getRepositories(organisationName);
@@ -89,6 +89,9 @@ describe('GithubService', () => {
       expect(req.request.headers.getAll('Accept')).toEqual(['application/vnd.github.v3+json']);
       req.flush({});
     });
+
+    //TODO: test org name is not a valid one
+    //TODO: test exceptions
 
   });
 });

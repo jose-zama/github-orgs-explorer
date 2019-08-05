@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, ParamMap} from "@angular/router";
+import {ActivatedRoute, ParamMap, Params} from "@angular/router";
 import {GitService} from "../services/git.service";
+import {Organisation} from "./Organisation";
 
 @Component({
   selector: 'app-repos-container',
@@ -9,7 +10,7 @@ import {GitService} from "../services/git.service";
 })
 export class ReposContainerComponent implements OnInit {
 
-  organisation: string;
+  organisation: Organisation = new Organisation();
 
   constructor(private route: ActivatedRoute,
               private gitService: GitService,) {
@@ -17,12 +18,12 @@ export class ReposContainerComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.subscribe((params: ParamMap) => {
-      this.organisation = params.get('org');
-      this.gitService.getRepositories(this.organisation).subscribe(res => {
-        console.log(res);
+      this.organisation.name = params.get('org');
+
+      this.gitService.getRepositories(this.organisation.name).subscribe(res => {
+        this.organisation.repos = res;
       });
     });
-
   }
 
 }
