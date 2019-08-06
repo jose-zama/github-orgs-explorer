@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, ParamMap, Params} from "@angular/router";
 import {GitService} from "../services/git.service";
 import {Organisation} from "./Organisation";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-repos-container',
@@ -13,6 +14,7 @@ export class ReposContainerComponent implements OnInit {
   organisation: Organisation = new Organisation();
   repositories;
   languages;
+  error: string;
 
   constructor(private route: ActivatedRoute,
               private gitService: GitService,) {
@@ -20,20 +22,30 @@ export class ReposContainerComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.subscribe((params: ParamMap) => {
+      this.organisation = new Organisation();
       this.organisation.name = params.get('org');
       this.languages = new Set();
 
-      this.gitService.getRepositories(this.organisation.name).subscribe(repos => {
-        this.organisation.repos = this.repositories = repos;
+      this.gitService.getRepositories(this.organisation.name).subscribe(
+        (repos) => {
+          this.organisation.repos = this.repositories = repos;
 
-        this.repositories.sort((a, b) => a.stargazers_count < b.stargazers_count);
-        this.repositories
-          .map((repo) => repo.language)
-          .filter((language) => language !== null)
-          .forEach((language) => this.languages.add(language));
-      });
+          this.repositories.sort((a, b) => a.stargazers_count < b.stargazers_count);
+          this.repositories
+            .map((repo) => repo.language)
+            .filter((language) => language !== null)
+            .forEach((language) => this.languages.add(language));
+        },
+        (err: HttpErrorResponse) => {
+          console.error(err);
+          if (err.status === 404) this.error = 'Organisation not found';
+          else this.error = 'Something bad happened :(';
+        }
+      );
+
     });
   }
+
 
   filterByLanguage(language: string) {
     if (language === 'all')
