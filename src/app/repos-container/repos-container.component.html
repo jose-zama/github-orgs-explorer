@@ -1,30 +1,37 @@
-<mat-button-toggle-group #group="matButtonToggleGroup"
-                         (click)="filterByLanguage(group.value)"
-                         value="all"
-                         matTooltip="Filter by language"
-                         matTooltipPosition="above">
-  <mat-button-toggle value="all">
-    All
-  </mat-button-toggle>
-  <mat-button-toggle *ngFor="let language of languages" [value]="language">
-    {{language}}
-  </mat-button-toggle>
-</mat-button-toggle-group>
+<div *ngIf="!error">
+  <mat-button-toggle-group #group="matButtonToggleGroup"
+                           (click)="filterByLanguage(group.value)"
+                           value="all"
+                           matTooltip="Filter by language"
+                           matTooltipPosition="above">
+    <mat-button-toggle value="all">
+      All
+    </mat-button-toggle>
+    <mat-button-toggle *ngFor="let language of languages" [value]="language">
+      {{language}}
+    </mat-button-toggle>
+  </mat-button-toggle-group>
 
-<div class="homework-repos-container">
-<mat-card class="homework-repo" *ngFor="let repo of repositories">
-  <mat-card-title>
-    {{repo.name}}
-    <mat-icon matBadge="{{repo.stargazers_count}}">star</mat-icon>
-    <span class="cdk-visually-hidden">
+  <div class="homework-repos-container">
+    <mat-card class="homework-repo" *ngFor="let repo of repositories">
+      <mat-card-title>
+        {{repo.name}}
+        <mat-icon matBadge="{{repo.stargazers_count}}">star</mat-icon>
+        <span class="cdk-visually-hidden">
       Stars
     </span>
-  </mat-card-title>
-  <mat-card-subtitle>
-    {{repo.language}}
-  </mat-card-subtitle>
-  <mat-card-content>
-    <p>{{repo.description}}</p>
-  </mat-card-content>
-</mat-card>
+      </mat-card-title>
+      <mat-card-subtitle>
+        {{repo.language}}
+      </mat-card-subtitle>
+      <mat-card-content>
+        <p>{{repo.description}}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>
+
+<p class=mat-body-strong *ngIf="error" align="center">
+  <mat-icon>error</mat-icon>
+  <span> {{error}}</span>
+</p>

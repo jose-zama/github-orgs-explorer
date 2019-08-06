@@ -23,12 +23,19 @@ export class ReposContainerComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.organisation = new Organisation();
+
       this.organisation.name = params.get('org');
       this.languages = new Set();
 
       this.gitService.getRepositories(this.organisation.name).subscribe(
         (repos) => {
           this.organisation.repos = this.repositories = repos;
+          this.error=undefined;
+
+          if(repos.length===0) {
+            this.error = 'Organisation have no repository';
+            return;
+          }
 
           this.repositories.sort((a, b) => a.stargazers_count < b.stargazers_count);
           this.repositories
