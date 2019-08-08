@@ -1,6 +1,7 @@
 <div *ngIf="!error">
   <mat-button-toggle-group #group="matButtonToggleGroup"
                            (click)="filterByLanguage(group.value)"
+                           *ngIf="languages.size>0"
                            value="all"
                            matTooltip="Filter by language"
                            matTooltipPosition="above">
