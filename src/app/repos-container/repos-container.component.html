@@ -1,4 +1,4 @@
-<div *ngIf="!error">
+<div *ngIf="!error" class="homework-repos-container">
   <mat-button-toggle-group #group="matButtonToggleGroup"
                            (click)="filterByLanguage(group.value)"
                            *ngIf="languages.size>0"
@@ -13,10 +13,10 @@
     </mat-button-toggle>
   </mat-button-toggle-group>
 
-  <div class="homework-repos-container">
+  <div class="homework-repos-list">
     <mat-card class="homework-repo" *ngFor="let repo of repositories">
       <mat-card-title>
-        {{repo.name}}
+        <a class="docs-component-viewer-sidenav-item-selected" [routerLink]="['/',organisation.name,repo.name]">{{repo.name}}</a>
         <mat-icon matBadge="{{repo.stargazers_count}}">star</mat-icon>
         <span class="cdk-visually-hidden">
       Stars

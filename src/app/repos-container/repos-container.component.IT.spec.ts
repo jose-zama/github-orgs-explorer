@@ -7,6 +7,7 @@ import {MatIconModule, MatBadgeModule, MatCardModule, MatButtonToggleModule} fro
 import {GithubService} from "../services/github.service";
 import {HttpClient} from "@angular/common/http";
 import {HttpTestingController, HttpClientTestingModule} from "@angular/common/http/testing";
+import {RouterTestingModule} from "@angular/router/testing";
 
 describe('ReposContainerComponentIT', () => {
 
@@ -34,7 +35,8 @@ describe('ReposContainerComponentIT', () => {
         MatIconModule,
         MatBadgeModule,
         MatCardModule,
-        MatButtonToggleModule
+        MatButtonToggleModule,
+        RouterTestingModule
       ],
       providers: [
         {provide: GitService, useClass: GithubService},

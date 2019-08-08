@@ -1,17 +1,27 @@
 <!--The content below is only a placeholder and can be replaced.-->
+<mat-toolbar class="homework-banner">
+  <h1>Homework</h1>
+</mat-toolbar>
 <div style="text-align:center" class="mat-typography homework-header">
-  <h1 class="mat-display-1">
-    {{ title }}!
-  </h1>
   <h2>Serve yourself</h2>
   <div>
     <mat-form-field>
-      <input id="org-input" #org matInput placeholder="Github organisation" (keyup.enter)="listRepositories(org.value)">
+      <input id="org-input" [value]="orgName" #org matInput placeholder="Github organisation"
+             (keyup.enter)="listRepositories(org.value)">
     </mat-form-field>
   </div>
   <div>
-    <button mat-stroked-button color="primary" (click)="listRepositories(org.value)" [disabled]="org.value.length==0">List repositories</button>
+    <button mat-stroked-button color="primary" (click)="listRepositories(org.value)" [disabled]="org.value.length==0">
+      List repositories
+    </button>
   </div>
 </div>
 
-<router-outlet></router-outlet>
+<div class="homework-content">
+  <div class="homework-nav" >
+    <a [routerLink]="orgName">{{orgName}}</a><a *ngIf="repo" [routerLink]="[orgName,repo]">/{{repo}}</a>
+  </div>
+  <router-outlet></router-outlet>
+</div>
+
+

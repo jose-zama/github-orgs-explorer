@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, ParamMap, Params} from "@angular/router";
+import {ActivatedRoute, ParamMap} from "@angular/router";
 import {GitService} from "../services/git.service";
 import {Organisation} from "./Organisation";
 import {HttpErrorResponse} from "@angular/common/http";
@@ -52,7 +52,6 @@ export class ReposContainerComponent implements OnInit {
 
     });
   }
-
 
   filterByLanguage(language: string) {
     if (language === 'all')

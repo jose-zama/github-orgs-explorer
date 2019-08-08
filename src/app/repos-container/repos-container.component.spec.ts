@@ -1,10 +1,11 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {ReposContainerComponent} from './repos-container.component';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, RouterModule} from '@angular/router';
 import {GitService} from "../services/git.service";
 import {of} from "rxjs";
 import {ActivatedRouteStub} from "../../testing/ActivatedRouteStub";
 import {MatIconModule, MatBadgeModule, MatCardModule, MatButtonToggleModule} from "@angular/material";
+import {RouterTestingModule} from "@angular/router/testing";
 
 describe('ReposContainerComponent', () => {
 
@@ -29,7 +30,8 @@ describe('ReposContainerComponent', () => {
         MatIconModule,
         MatBadgeModule,
         MatCardModule,
-        MatButtonToggleModule
+        MatButtonToggleModule,
+        RouterTestingModule
       ],
       providers: [
         {provide: GitService, useValue: gitServiceSpy},
@@ -90,8 +92,5 @@ describe('ReposContainerComponent', () => {
     expect(component.organisation.repos).toEqual(repos);
     expect(gitServiceSpy.getRepositories).toHaveBeenCalledWith('something');
   });
-
-  //TODO: test exceptions like
-  //not existing organization
 
 });

@@ -6,7 +6,7 @@ import {GitService} from "./git.service";
 @Injectable({
   providedIn: 'root'
 })
-export class GithubService implements GitService{
+export class GithubService implements GitService {
 
   githubURL: string = 'https://api.github.com';
 
@@ -21,5 +21,10 @@ export class GithubService implements GitService{
 
   getRepositories(organisationName: string) {
     return this.http.get(this.githubURL + '/orgs/' + organisationName + '/repos', this.httpOptions);
+  }
+
+  getBranches(organisationName: string, repositoryName) {
+    return this.http.get(this.githubURL + '/repos/' + organisationName + '/' + repositoryName + '/branches',
+      this.httpOptions);
   }
 }

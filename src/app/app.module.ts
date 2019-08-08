@@ -11,17 +11,19 @@ import {
   MatFormFieldModule,
   MatInputModule,
   MatButtonModule, MatListModule, MatCardModule, MatDividerModule, MatIconModule, MatBadgeModule, MatButtonToggleModule,
-  MatTooltipModule
+  MatTooltipModule, MatToolbarModule
 } from '@angular/material';
 
 import {ReposContainerComponent} from './repos-container/repos-container.component';
 import {GitService} from "./services/git.service";
 import {GithubService} from "./services/github.service";
+import { BranchesContainerComponent } from './branches-container/branches-container.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ReposContainerComponent,
+    BranchesContainerComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,7 +39,8 @@ import {GithubService} from "./services/github.service";
     MatIconModule,
     MatBadgeModule,
     MatButtonToggleModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatToolbarModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
   providers: [

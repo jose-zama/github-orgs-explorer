@@ -28,7 +28,7 @@ describe('home page', function () {
     cy.get('#org-input').type('my-organisation');
     cy.contains('List').click();
     cy.url()
-      .should('include', '/orgs/my-organisation')
+      .should('include', '/my-organisation')
   });
 
   it('should list the repositories of the org entered when list repositories button is clicked', () => {

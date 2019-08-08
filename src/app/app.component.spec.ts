@@ -5,7 +5,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
   MatFormFieldModule,
   MatInputModule,
-  MatButtonModule
+  MatButtonModule, MatToolbarModule
 } from '@angular/material';
 
 describe('AppComponent', () => {
@@ -16,7 +16,8 @@ describe('AppComponent', () => {
         BrowserAnimationsModule,
         MatFormFieldModule,
         MatInputModule,
-        MatButtonModule
+        MatButtonModule,
+        MatToolbarModule
       ],
       declarations: [
         AppComponent
@@ -40,6 +41,6 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Hola!');
+    expect(compiled.querySelector('h1').textContent).toContain('Homework');
   });
 });

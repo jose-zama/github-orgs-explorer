@@ -1,0 +1,12 @@
+<div *ngIf="!error">
+
+  <mat-list>
+    <mat-list-item *ngFor="let branch of branches">  {{branch.name}} </mat-list-item>
+  </mat-list>
+
+</div>
+
+<p class=mat-body-strong *ngIf="error" align="center">
+  <mat-icon>error</mat-icon>
+  <span> {{error}}</span>
+</p>
