@@ -37,7 +37,7 @@ export class ReposContainerComponent implements OnInit {
             return;
           }
 
-          this.repositories.sort((a, b) => a.stargazers_count < b.stargazers_count);
+          this.sortByNumberOfStars();
           this.repositories
             .map((repo) => repo.language)
             .filter((language) => language !== null)
@@ -58,6 +58,14 @@ export class ReposContainerComponent implements OnInit {
       this.repositories = this.organisation.repos;
     else
       this.repositories = this.organisation.repos.filter((repo) => repo.language === language);
+  }
+
+  sortByNumberOfStars() {
+    this.repositories.sort((a, b) => a.stargazers_count < b.stargazers_count);
+  }
+
+  sortByNumberOfForks() {
+    this.repositories.sort((a, b) => a.forks_count < b.forks_count);
   }
 
 }

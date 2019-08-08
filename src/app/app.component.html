@@ -19,7 +19,7 @@
 
 <div class="homework-content">
   <div class="homework-nav" >
-    <a [routerLink]="orgName">{{orgName}}</a><a *ngIf="repo" [routerLink]="[orgName,repo]">/{{repo}}</a>
+    <a [routerLink]="orgName">{{orgName}}</a><a *ngIf="repo" [routerLink]="[orgName,repo]"> / {{repo}}</a>
   </div>
   <router-outlet></router-outlet>
 </div>
