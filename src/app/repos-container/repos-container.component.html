@@ -24,7 +24,7 @@
 
   <p *ngIf="reposSize">Number of repositories: {{reposSize}}</p>
 
-  <cdk-virtual-scroll-viewport itemSize="30" class="homework-repos-viewport">
+  <cdk-virtual-scroll-viewport itemSize="120" class="homework-repos-viewport">
     <mat-card class="homework-repo" *cdkVirtualFor="let repo of repositories">
       <mat-card-title>
         <a [routerLink]="['/',organisation.name,repo.name]">{{repo.name}}</a>
