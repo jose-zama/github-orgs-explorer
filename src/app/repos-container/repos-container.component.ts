@@ -15,6 +15,7 @@ export class ReposContainerComponent implements OnInit {
   repositories;
   languages;
   error: string;
+  reposSize;
 
   constructor(private route: ActivatedRoute,
               private gitService: GitService,) {
@@ -23,6 +24,9 @@ export class ReposContainerComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.organisation = new Organisation();
+      this.repositories = undefined;
+      this.error = undefined;
+      this.reposSize = undefined;
 
       this.organisation.name = params.get('org');
       this.languages = new Set();
@@ -30,7 +34,7 @@ export class ReposContainerComponent implements OnInit {
       this.gitService.getRepositories(this.organisation.name).subscribe(
         (repos) => {
           this.organisation.repos = this.repositories = repos;
-          this.error = undefined;
+          this.reposSize = repos.length;
 
           if (repos.length === 0) {
             this.error = 'Organisation have no repository';

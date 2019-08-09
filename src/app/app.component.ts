@@ -28,6 +28,7 @@ export class AppComponent implements OnInit {
     ) as Observable<NavigationEnd>;
 
     events.subscribe(event => {
+      console.log(event.url)
       if (this.router.parseUrl(event.url).root.children[PRIMARY_OUTLET] === undefined) return;
       let segment = this.router.parseUrl(event.url).root.children[PRIMARY_OUTLET].segments;
       this.orgName = segment[0] !== undefined ? segment[0].path : "";

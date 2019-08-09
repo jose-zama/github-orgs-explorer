@@ -11,7 +11,7 @@ import {
   MatFormFieldModule,
   MatInputModule,
   MatButtonModule, MatListModule, MatCardModule, MatDividerModule, MatIconModule, MatBadgeModule, MatButtonToggleModule,
-  MatTooltipModule, MatToolbarModule
+  MatTooltipModule, MatToolbarModule, MatProgressSpinnerModule
 } from '@angular/material';
 
 import {ReposContainerComponent} from './repos-container/repos-container.component';
@@ -42,7 +42,8 @@ import {ScrollingModule} from "@angular/cdk/scrolling";
     MatButtonToggleModule,
     MatTooltipModule,
     MatToolbarModule,
-    ScrollingModule
+    ScrollingModule,
+    MatProgressSpinnerModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
   providers: [
