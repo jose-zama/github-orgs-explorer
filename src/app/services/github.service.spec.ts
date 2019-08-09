@@ -46,11 +46,12 @@ describe('GithubService', () => {
       // angular $http client return observables,
       // which is a publish and subscribe mechanism for async programming
       result.subscribe(data => {
+        console.log("AAAAAA");
         expect(data).toBe(expectedRepository);
       });
 
       //resolve the observable with the mocked repository
-      const req = httpTestingController.expectOne('https://api.github.com/orgs/my-organisation/repos');
+      const req = httpTestingController.expectOne('https://api.github.com/orgs/my-organisation/repos?page=1&per_page=100');
       req.flush(expectedRepository);
     });
 
@@ -67,7 +68,7 @@ describe('GithubService', () => {
       result.subscribe(data => {});
 
       //resolve the observable with the mocked repository
-      const req = httpTestingController.expectOne('https://api.github.com/orgs/my-organisation/repos');
+      const req = httpTestingController.expectOne('https://api.github.com/orgs/my-organisation/repos?page=1&per_page=100');
       expect(req.request.method).toEqual('GET');
       req.flush({});
     });
@@ -85,13 +86,10 @@ describe('GithubService', () => {
       result.subscribe(data => {});
 
       //resolve the observable with the mocked repository
-      const req = httpTestingController.expectOne('https://api.github.com/orgs/my-organisation/repos');
+      const req = httpTestingController.expectOne('https://api.github.com/orgs/my-organisation/repos?page=1&per_page=100');
       expect(req.request.headers.getAll('Accept')).toEqual(['application/vnd.github.v3+json']);
       req.flush({});
     });
-
-    //TODO: test org name is not a valid one
-    //TODO: test exceptions
 
   });
 });

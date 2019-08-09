@@ -8,6 +8,7 @@ import {GithubService} from "../services/github.service";
 import {HttpClient} from "@angular/common/http";
 import {HttpTestingController, HttpClientTestingModule} from "@angular/common/http/testing";
 import {RouterTestingModule} from "@angular/router/testing";
+import {ScrollingModule} from "@angular/cdk/scrolling";
 
 describe('ReposContainerComponentIT', () => {
 
@@ -36,7 +37,8 @@ describe('ReposContainerComponentIT', () => {
         MatBadgeModule,
         MatCardModule,
         MatButtonToggleModule,
-        RouterTestingModule
+        RouterTestingModule,
+        ScrollingModule
       ],
       providers: [
         {provide: GitService, useClass: GithubService},
@@ -73,7 +75,7 @@ describe('ReposContainerComponentIT', () => {
     ];
 
     //resolve the observable with the mocked repository
-    const req = httpTestingController.expectOne('https://api.github.com/orgs/some_org/repos');
+    const req = httpTestingController.expectOne('https://api.github.com/orgs/some_org/repos?page=1&per_page=100');
     req.flush(repos);
 
     //assert
@@ -88,7 +90,7 @@ describe('ReposContainerComponentIT', () => {
     ];
 
     //resolve the observable with the mocked repository
-    const req = httpTestingController.expectOne('https://api.github.com/orgs/some_org/repos');
+    const req = httpTestingController.expectOne('https://api.github.com/orgs/some_org/repos?page=1&per_page=100');
     req.flush('error', {status: 404, statusText: 'Not Found'});
 
     //assert

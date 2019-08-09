@@ -5,7 +5,7 @@ describe('home page', function () {
     cy.server();        // enable response stubbing
     cy.route({
       method: 'GET',
-      url: 'https://api.github.com/orgs/my-organisation/repos',
+      url: 'https://api.github.com/orgs/my-organisation/repos?page=1&per_page=100',
       response: [{
         name: 'one repo to rule them all',
         language: 'rust',

@@ -18,6 +18,7 @@ import {ReposContainerComponent} from './repos-container/repos-container.compone
 import {GitService} from "./services/git.service";
 import {GithubService} from "./services/github.service";
 import { BranchesContainerComponent } from './branches-container/branches-container.component';
+import {ScrollingModule} from "@angular/cdk/scrolling";
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { BranchesContainerComponent } from './branches-container/branches-contai
     MatBadgeModule,
     MatButtonToggleModule,
     MatTooltipModule,
-    MatToolbarModule
+    MatToolbarModule,
+    ScrollingModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
   providers: [

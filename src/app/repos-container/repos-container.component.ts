@@ -30,9 +30,9 @@ export class ReposContainerComponent implements OnInit {
       this.gitService.getRepositories(this.organisation.name).subscribe(
         (repos) => {
           this.organisation.repos = this.repositories = repos;
-          this.error=undefined;
+          this.error = undefined;
 
-          if(repos.length===0) {
+          if (repos.length === 0) {
             this.error = 'Organisation have no repository';
             return;
           }
@@ -61,11 +61,11 @@ export class ReposContainerComponent implements OnInit {
   }
 
   sortByNumberOfStars() {
-    this.repositories.sort((a, b) => a.stargazers_count < b.stargazers_count);
+    this.repositories = [...this.repositories.sort((a, b) => a.stargazers_count < b.stargazers_count)];
   }
 
   sortByNumberOfForks() {
-    this.repositories.sort((a, b) => a.forks_count < b.forks_count);
+    this.repositories = [...this.repositories.sort((a, b) => a.forks_count < b.forks_count)];
   }
 
 }

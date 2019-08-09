@@ -20,7 +20,17 @@ export class GithubService implements GitService {
   }
 
   getRepositories(organisationName: string) {
-    return this.http.get(this.githubURL + '/orgs/' + organisationName + '/repos', this.httpOptions);
+    return this.getRepositoriesPerPage(organisationName, 1);
+  }
+
+
+  getRepositoriesPerPage = (organisationName: string, page) => {
+    return this.http.get(
+      this.githubURL +
+      '/orgs/' + organisationName +
+      '/repos?page=' + page +
+      '&per_page=100',
+      this.httpOptions);
   }
 
   getBranches(organisationName: string, repositoryName) {

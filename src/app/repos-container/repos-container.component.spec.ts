@@ -6,6 +6,7 @@ import {of} from "rxjs";
 import {ActivatedRouteStub} from "../../testing/ActivatedRouteStub";
 import {MatIconModule, MatBadgeModule, MatCardModule, MatButtonToggleModule} from "@angular/material";
 import {RouterTestingModule} from "@angular/router/testing";
+import {ScrollingModule} from "@angular/cdk/scrolling";
 
 describe('ReposContainerComponent', () => {
 
@@ -31,7 +32,8 @@ describe('ReposContainerComponent', () => {
         MatBadgeModule,
         MatCardModule,
         MatButtonToggleModule,
-        RouterTestingModule
+        RouterTestingModule,
+        ScrollingModule
       ],
       providers: [
         {provide: GitService, useValue: gitServiceSpy},
@@ -39,7 +41,7 @@ describe('ReposContainerComponent', () => {
       ],
       declarations: [ReposContainerComponent]
     })
-     .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
