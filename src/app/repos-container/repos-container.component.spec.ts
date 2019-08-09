@@ -4,7 +4,10 @@ import {ActivatedRoute, RouterModule} from '@angular/router';
 import {GitService} from "../services/git.service";
 import {of} from "rxjs";
 import {ActivatedRouteStub} from "../../testing/ActivatedRouteStub";
-import {MatIconModule, MatBadgeModule, MatCardModule, MatButtonToggleModule} from "@angular/material";
+import {
+  MatIconModule, MatBadgeModule, MatCardModule, MatButtonToggleModule,
+  MatProgressSpinnerModule, MatSelectModule
+} from "@angular/material";
 import {RouterTestingModule} from "@angular/router/testing";
 import {ScrollingModule} from "@angular/cdk/scrolling";
 
@@ -33,7 +36,9 @@ describe('ReposContainerComponent', () => {
         MatCardModule,
         MatButtonToggleModule,
         RouterTestingModule,
-        ScrollingModule
+        ScrollingModule,
+        MatProgressSpinnerModule,
+        MatSelectModule
       ],
       providers: [
         {provide: GitService, useValue: gitServiceSpy},

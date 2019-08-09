@@ -3,6 +3,7 @@ import {HttpClientTestingModule, HttpTestingController} from '@angular/common/ht
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 
 import {GithubService} from './github.service';
+import {RouterTestingModule} from "@angular/router/testing";
 
 describe('GithubService', () => {
 
@@ -12,7 +13,7 @@ describe('GithubService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule]
+      imports: [HttpClientTestingModule,RouterTestingModule]
     });
 
     httpClient = TestBed.get(HttpClient);
@@ -46,7 +47,6 @@ describe('GithubService', () => {
       // angular $http client return observables,
       // which is a publish and subscribe mechanism for async programming
       result.subscribe(data => {
-        console.log("AAAAAA");
         expect(data).toBe(expectedRepository);
       });
 

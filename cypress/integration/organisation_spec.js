@@ -46,7 +46,8 @@ describe('home page', function () {
   it('should filter the repositories by the selected language', () => {
     cy.get('#org-input').type('my-organisation');
     cy.contains('List').click();
-    cy.contains('java').click();
+    cy.contains('mat-form-field','Language').click();
+    cy.contains('.mat-option-text','java').click();
     cy.get('.homework-repos-container')
       .contains('java the hut');
   });

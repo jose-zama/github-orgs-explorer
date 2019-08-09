@@ -3,7 +3,10 @@ import {ReposContainerComponent} from './repos-container.component';
 import {ActivatedRoute} from '@angular/router';
 import {GitService} from "../services/git.service";
 import {ActivatedRouteStub} from "../../testing/ActivatedRouteStub";
-import {MatIconModule, MatBadgeModule, MatCardModule, MatButtonToggleModule} from "@angular/material";
+import {
+  MatIconModule, MatBadgeModule, MatCardModule, MatButtonToggleModule,
+  MatProgressSpinnerModule, MatSelectModule
+} from "@angular/material";
 import {GithubService} from "../services/github.service";
 import {HttpClient} from "@angular/common/http";
 import {HttpTestingController, HttpClientTestingModule} from "@angular/common/http/testing";
@@ -38,7 +41,9 @@ describe('ReposContainerComponentIT', () => {
         MatCardModule,
         MatButtonToggleModule,
         RouterTestingModule,
-        ScrollingModule
+        ScrollingModule,
+        MatProgressSpinnerModule,
+        MatSelectModule
       ],
       providers: [
         {provide: GitService, useClass: GithubService},

@@ -2,9 +2,10 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {HttpHeaders} from '@angular/common/http';
 import {GitService} from "./git.service";
-import {map, mergeMap, reduce, mergeAll} from "rxjs/internal/operators";
-import {Observable, merge, forkJoin} from "rxjs";
+import {mergeMap, reduce, mergeAll} from "rxjs/internal/operators";
+import {forkJoin, of} from "rxjs";
 import {UrlTree, Router} from "@angular/router";
+import {HttpResponse} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -28,29 +29,24 @@ export class GithubService implements GitService {
       '/repos?page=1&per_page=100';
 
     return this.getRepositoriesByUrl(firstPageUrl)
-      .pipe(mergeMap(resp => {
+      .pipe(mergeMap((resp: HttpResponse<Array<any>>) => {
         if (resp.headers.get('Link') === null)
-          return this.getRepositoriesPerPage(organisationName, 1);
+          return of(resp.body);
 
         let last = resp.headers.get('Link').split(',').filter(x => x.endsWith('rel="last"'))[0];
         let lastPageUrl = last.substring(last.indexOf('<') + 1, last.indexOf('>'));
-        console.log(lastPageUrl);
         let lastPageUrlTree: UrlTree = this.router.parseUrl(lastPageUrl.replace(this.githubURL, ''));
         let lastPage: number = Number.parseInt(lastPageUrlTree.queryParamMap.get('page'));
 
         let parallelRequests = [];
 
-        for (let i = 1; i <= lastPage; i++) {
+        for (let i = 2; i <= lastPage; i++) {
           parallelRequests.push(this.getRepositoriesPerPage(organisationName, i))
         }
-        // return this.getRepositoriesByUrl(nextPageUrl).pipe(map(resp=>resp.body));
+
+        console.log(resp.body);
         return forkJoin(parallelRequests)
-          .pipe(mergeAll(),reduce((acc, resp) => acc.concat(resp), []));
-          // .pipe(reduce((acc, resp) => acc.concat(resp)), seed);
-          // .pipe(map(results=>{
-          //   console.log(results);
-          //   return results
-          // }));
+          .pipe(mergeAll(), reduce((acc, resp) => acc.concat(resp), resp.body));
 
       }));
 
@@ -67,11 +63,6 @@ export class GithubService implements GitService {
 
 
   getRepositoriesPerPage = (organisationName: string, page) => {
-    console.log(this.githubURL +
-      '/orgs/' + organisationName +
-      '/repos?page=' + page +
-      '&per_page=100');
-
     return this.http.get(
       this.githubURL +
       '/orgs/' + organisationName +
